@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Harbor News</title>
+        <style>
+            #feed {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                max-width: 800px;
+                margin: 20px auto;
+            }
+            video {
+                width: 100%;
+                border-radius: 8px;
+            }
+            .video-label {
+                font-size: 0.85rem;
+                color: #555;
+                margin-bottom: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="uploadForm" method="POST" autocomplete="off" enctype="multipart/form-data">
+            <input type="file" name="video_file" accept="video/*">
+            <input type="password" name="password">
+            <button type="button" onclick="uploadFile()">Submit</button>
+        </form>
+
+        <div id="feed"></div>
+
+        <video id="video_player" controls style="display:none; width:100%"></video>
+
+        <script>
+            // Load all videos when page opens
+            async function loadFeed() {
+                const response = await fetch('/videos');
+                const files = await response.json();
+                const feed = document.getElementById('feed');
+                feed.innerHTML = ''; 
+
+                files.forEach(filename => {
+                    const wrapper = document.createElement('div');
+
+                    const label = document.createElement('div');
+                    label.className = 'video-label';
+                    label.textContent = filename;
+
+                    const video = document.createElement('video');
+                    video.src = `/video/${filename}`;
+                    video.controls = true;
+
+                    wrapper.appendChild(label);
+                    wrapper.appendChild(video);
+                    feed.appendChild(wrapper);
+                });
+            }
+
+            
+            async function uploadFile() {
+                const formData = new FormData(document.getElementById('uploadForm'));
+                const response = await fetch('/', { method: 'POST', body: formData });
+
+                if (response.ok) {
+                    await loadFeed();
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to newest
+                } else {
+                    alert('Upload failed. Check your password.');
+                }
+            }
+
+            // Load feed on page open
+            loadFeed();
+        </script>
+
+    </body>
+</html>
