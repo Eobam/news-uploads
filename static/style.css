@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f4f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1a1a1a;
+}
+
+header {
+    background-color: #0a2463;
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid #c8102e;
+}
+
+header h1 {
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.upload-section {
+    background: white;
+    border: 1px solid #c5d3e8;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 24px auto;
+}
+
+.upload-section input[type="file"],
+.upload-section input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #c5d3e8;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f0f4f8;
+}
+
+.upload-section button {
+    background-color: #0a2463;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.upload-section button:hover {
+    background-color: #c8102e;
+}
+
+#feed {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.video-card {
+    background: white;
+    border: 1px solid #c5d3e8;
+    border-radius: 8px;
+    overflow: hidden;
+    border-top: 3px solid #0a2463;
+}
+
+.video-card video {
+    width: 100%;
+    display: block;
+}
+
+.video-label {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #555;
+    border-top: 1px solid #e8eef5;
+}
