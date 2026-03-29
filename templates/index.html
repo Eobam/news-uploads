@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <head>
-
+    <head> 
+            <link href="style.css" rel="stylesheet">
             <title>Harbor News</title>
         <style>
             #feed {
@@ -26,7 +26,8 @@
         <form id="uploadForm" method="POST" autocomplete="off" enctype="multipart/form-data">
             <input type="file" name="video_file" accept="video/*">
             <input type="password" name="password">
-            <button type="button" onclick="uploadFile()">Submit</button>
+            
+            <button type="button" onclick="uploadFile()">Upload</button>
         </form>
 
         <div id="feed"></div>

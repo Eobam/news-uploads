@@ -3,6 +3,11 @@ body {
     color: red;
 }
 
-button {
+button, input, select, textarea  {
     border-radius: 7px;
+    color: red;
+    background-color: blue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
