@@ -5,8 +5,8 @@ import os
 app = Flask(__name__)
 
 #folders
-video_upload_folder = 'uploads'
-os.makedirs(video_upload_folder, exist_ok=True)
+video_uploadfolder = 'uploads'
+os.makedirs(video_uploadfolder, exist_ok=True)
 
 a_pass = '1234567890'
 
@@ -19,23 +19,23 @@ def index():
         
 
         if password != a_pass:
-            return jsonify({'error': 'Incorrect Password'}), 403
+            return jsonify({'error': 'incorrect password'}), 403
 
 
         if video_file:
-            video_file.save(os.path.join(video_upload_folder, video_file.filename))
+            video_file.save(os.path.join(video_uploadfolder, video_file.filename))
             return jsonify({'filename': video_file.filename})
 
     return render_template('index.html')
 
 @app.route('/video/<filename>')
 def serve_video(filename):
-    return send_from_directory(video_upload_folder, filename)
+    return send_from_directory(video_uploadfolder, filename)
 
 @app.route('/videos')
 def list_videos():
-    files = os.listdir(video_upload_folder)
-    files.sort(key=lambda f: os.path.getmtime(os.path.join(video_upload_folder, f)), reverse=True)
+    files = os.listdir(video_uploadfolder)
+    files.sort(key=lambda f: os.path.getmtime(os.path.join(video_uploadfolder, f)), reverse=True)
     return jsonify(files)
 
 if __name__ == '__main__':
